@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :posts do
-  	member do
-  		get "like", to: "posts#upvote"
-  		get "dislike", to: "posts#downvote"
-  	end
-  	resources :comments
-	end
-  root 'posts#index'
+ resources :recipes do 
+ 	resources :comments
+ end
+
+ root "recipes#index"
 end

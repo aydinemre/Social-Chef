@@ -1,25 +1,27 @@
-!!!
+!!! 5
 %html
 %head
 	%title Social Chef
-	= stylesheet_link_tag    'application', media: 'all'
-	= javascript_include_tag 'application'
-	%link{:rel => "stylesheet", :href => "http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css"}
-	%link{:rel => "stylesheet", :href => "http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"}
+	= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+	= javascript_include_tag 'application', 'data-turbolinks-track' => true
 	= csrf_meta_tags
+
 %body
-	%header
-		.wrapper.clearfix
-			#logo= link_to "Social Chef", root_path
-			%nav
-				- if user_signed_in?
-					= link_to current_user.name, edit_user_registration_path
-					= link_to "Add New Inspiration", new_post_path, class: "button"
-					= link_to "Sign out", destroy_user_session_path, :method => :delete
-				- else
-					= link_to "Sign in", new_user_session_path
-					= link_to "Sign Up", new_user_registration_path, class: "button"
-	%p.notice= notice
-	%p.alert= alert
-	.wrapper
-= yield
+	%nav.navbar.navbar-default
+		.container
+			.navbar-brand= link_to "Social Chef", root_path
+
+			- if user_signed_in?
+				%ul.nav.navbar-nav.navbar-right
+					%li= link_to "New Recipe", new_recipe_path
+					%li= link_to "Sign Out", destroy_user_session_path, method: :delete
+			- else
+				%ul.nav.navbar-nav.navbar-right
+					%li= link_to "Sign Up", new_user_registration_path
+					%li= link_to "Sign In", new_user_session_path
+
+	.container
+		- flash.each do |name, msg|
+			= content_tag :div, msg, class: "alert"
+
+		= yield
