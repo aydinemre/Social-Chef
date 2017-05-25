@@ -31,6 +31,17 @@
 			- if user_signed_in?
 				= link_to "Edit", edit_recipe_path, class: "btn btn-default"
 				= link_to "Delete", recipe_path, method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-default"
+%p 
+	= @recipe.get_upvotes.size
+	Likes
+
+%p 
+	= @recipe.get_downvotes.size
+	Dislikes
+	
+
+= link_to "Like", like_recipe_path(@recipe), method: :get
+= link_to "Dislike", dislike_recipe_path(@recipe), method: :get
 
 #comments
 	%h2.comment_count= pluralize(@recipe.comments.count, "Comment")

@@ -6,4 +6,14 @@
 					.image_wrapper
 						= link_to recipe do
 							= image_tag recipe.image.url(:medium)
+
 					%h2= link_to recipe.title, recipe
+
+					%p.buttons
+						%span
+							%i.fa.fa-comments-o
+							= recipe.comments.count
+							Comments
+							%i.fa.fa-comments-o
+							= recipe.get_likes.size
+							Likes
