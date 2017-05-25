@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
 
 	def show
 		@comments = Comment.where(recipe_id: @recipe)
+		@random_recipe = Recipe.where.not(id: @recipe).order("RANDOM()").first
 	end
 
 	def new
@@ -48,7 +49,7 @@ class RecipesController < ApplicationController
 	def downvote
 		@recipe.downvote_from current_user
 		redirect_to @recipe
-end
+	end
 
 	private
 

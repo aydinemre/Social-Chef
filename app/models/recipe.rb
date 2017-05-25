@@ -1,13 +1,13 @@
 class Recipe < ActiveRecord::Base
 
-  	acts_as_votable	
+	acts_as_votable
 	
 	belongs_to :user
 
-	has_many :comments
-	
 	has_many :ingredients
 	has_many :directions
+
+	has_many :comments, :dependent => :destroy
 
 	accepts_nested_attributes_for :ingredients,
   															reject_if: proc { |attributes| attributes['name'].blank? },

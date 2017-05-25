@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
- resources :recipes do 
- 	resources :comments
- 	member do
-  		get "like", to: "recipes#upvote"
-  		get "dislike", to: "recipes#downvote"
+  	devise_for :users
+ 	resources :recipes do
+ 		member do
+	  		get "like", to: "recipes#upvote"
+	  		get "dislike", to: "recipes#downvote"
+		end
+	  	resources :comments
 	end
- end
 
- root "recipes#index"
+ 	root "recipes#index"
+ 	
 end
