@@ -11,7 +11,10 @@
 	%nav.navbar.navbar-default
 		.container
 			.navbar-brand= link_to "Social Chef", root_path
-
+			%ul.nav.navbar-nav.navbar-default
+				= form_tag(recipes_path, :method => "get", id: "search-form") do
+					= text_field_tag :search, params[:search], placeholder: "Search Recipes"
+					= submit_tag "Search", :name => nil
 			- if user_signed_in?
 				%ul.nav.navbar-nav.navbar-right
 					%li= link_to "New Recipe", new_recipe_path

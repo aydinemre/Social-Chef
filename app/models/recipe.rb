@@ -2,6 +2,10 @@ class Recipe < ActiveRecord::Base
 
 	acts_as_votable
 	
+	def self.search(search)
+  		where("recipes.title LIKE ?", "%#{search}%") 
+  	end
+
 	belongs_to :user
 
 	has_many :ingredients
