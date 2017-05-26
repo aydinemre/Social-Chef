@@ -15,6 +15,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'compass-rails', '~> 3.0', '>= 3.0.2'
 gem 'cocoon', '~> 1.2', '>= 1.2.10'
+gem 'mysql2'
 gem 'aws-sdk', '~> 2.9', '>= 2.9.24'
 gem 'sdoc', '~> 0.4.2',		group: :doc
 gem 'spring', '~> 2.0', '>= 2.0.2',	group: :development

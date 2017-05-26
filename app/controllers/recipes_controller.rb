@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
 		@recipes = Recipe.all
 	  	if params[:search]
 		    @recipes = Recipe.search(params[:search]).order("created_at DESC")
+		    @ingredients = Ingredient.where(recipe_id: @recipe)
   		else
 	    	@recipes = Recipe.all.order("created_at DESC")
 		end
